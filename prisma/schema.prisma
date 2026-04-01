@@ -7,6 +7,24 @@ datasource db {
   provider = "mysql"
 }
 
+enum ROLES {
+  OWNER
+  ADMIN
+  EDITOR
+  AUTHOR
+}
+
+enum STATUSPUBLISH {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum STATUS {
+  ACTIVE
+  INACTIVE
+}
+
 // ─── AUTH (Better Auth) ─────────────────────────────────
 
 model User {
@@ -15,7 +33,7 @@ model User {
   email         String
   emailVerified Boolean   @default(false)
   image         String?   @db.Text
-  role          String    @default("editor") @db.VarChar(20) // admin, editor, author
+  role          ROLES     @default(AUTHOR)
   bio           String?   @db.Text
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -23,7 +41,13 @@ model User {
   accounts      Account[]
   articles      Article[]
 
+  username        String?
+  displayUsername String?      @db.Text
+  members         Member[]
+  invitations     Invitation[]
+
   @@unique([email])
+  @@unique([username])
   @@map("user")
 }
 
@@ -37,6 +61,8 @@ model Session {
   userAgent String?  @db.Text
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  activeOrganizationId String? @db.Text
 
   @@unique([token])
   @@index([userId(length: 191)])
@@ -93,11 +119,11 @@ model Article {
   updatedAt   DateTime  @updatedAt
 
   authorId   String
-  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   categoryId String?
-  category   Category?  @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
-  tags       ArticleTag[]
+  tags ArticleTag[]
 
   @@index([authorId(length: 191)])
   @@index([categoryId(length: 191)])
@@ -106,14 +132,14 @@ model Article {
 }
 
 model Category {
-  id          String    @id @default(uuid())
-  name        String    @db.VarChar(100)
-  slug        String    @unique @db.VarChar(100)
-  description String?   @db.Text
-  color       String?   @db.VarChar(7)
-  sortOrder   Int       @default(0)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(100)
+  slug        String   @unique @db.VarChar(100)
+  description String?  @db.Text
+  color       String?  @db.VarChar(7)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   articles Article[]
 
@@ -121,12 +147,12 @@ model Category {
 }
 
 model Tag {
-  id        String       @id @default(uuid())
-  name      String       @db.VarChar(100)
-  slug      String       @unique @db.VarChar(100)
-  createdAt DateTime     @default(now())
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(100)
+  slug      String   @unique @db.VarChar(100)
+  createdAt DateTime @default(now())
 
-  articles  ArticleTag[]
+  articles ArticleTag[]
 
   @@map("tag")
 }
@@ -174,4 +200,51 @@ model Page {
   updatedAt DateTime @updatedAt
 
   @@map("page")
+}
+
+model Organization {
+  id          String       @id @default(uuid())
+  name        String       @db.Text
+  slug        String
+  logo        String?      @db.Text
+  createdAt   DateTime
+  metadata    String?      @db.Text
+  members     Member[]
+  invitations Invitation[]
+
+  @@unique([slug])
+  @@map("organization")
+}
+
+model Member {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           ROLES        @default(AUTHOR)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([organizationId(length: 191)])
+  @@index([userId(length: 191)])
+  @@unique([userId, organizationId])
+  @@map("member")
+}
+
+model Invitation {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  email          String       @db.Text
+  role           String?      @db.Text
+  status         String       @db.Text
+  expiresAt      DateTime
+  createdAt      DateTime     @default(now())
+  inviterId      String
+  user           User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId(length: 191)])
+  @@index([email(length: 191)])
+  @@map("invitation")
 }
