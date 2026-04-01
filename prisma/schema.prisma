@@ -25,6 +25,12 @@ enum STATUS {
   INACTIVE
 }
 
+enum LogAction {
+  CREATE
+  UPDATE
+  DELETE
+}
+
 // ─── AUTH (Better Auth) ─────────────────────────────────
 
 model User {
@@ -211,6 +217,7 @@ model Organization {
   metadata    String?      @db.Text
   members     Member[]
   invitations Invitation[]
+  auditLogs   AuditLog[]
 
   @@unique([slug])
   @@map("organization")
@@ -226,9 +233,9 @@ model Member {
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 
+  @@unique([userId, organizationId])
   @@index([organizationId(length: 191)])
   @@index([userId(length: 191)])
-  @@unique([userId, organizationId])
   @@map("member")
 }
 
@@ -247,4 +254,24 @@ model Invitation {
   @@index([organizationId(length: 191)])
   @@index([email(length: 191)])
   @@map("invitation")
+}
+
+model AuditLog {
+  id             String       @id @default(uuid())
+  action         LogAction
+  entity         String       @db.Text
+  entityId       String?      @db.Text
+  entityName     String?      @db.Text
+  userId         String       @db.Text
+  userName       String       @db.Text
+  userEmail      String       @db.Text
+  organizationId String
+  description    String?      @db.Text
+  before         String?      @db.LongText
+  after          String?      @db.LongText
+  createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, createdAt])
+  @@map("audit_log")
 }
