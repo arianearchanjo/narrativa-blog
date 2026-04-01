@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+import { Geist, Geist_Mono } from "next/font/google";
+import "./styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Narrativa Blog",
-  description: "Um blog de política e comentário sobre a atualidade política e social do Brasil e do mundo",
+  description: "Um blog de política e comentário sobre a atualidade",
 };
 
 export default function RootLayout({
@@ -26,8 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(geistSans.variable, geistMono.variable, "font-sans", inter.variable)}>
-      <body>{children}</body>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased min-h-screen bg-slate-50 text-slate-900">
+        {children}
+      </body>
     </html>
   );
 }
