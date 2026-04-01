@@ -99,13 +99,13 @@ export default function SobrePage() {
             {/* Manifesto + decorative */}
             <div>
               <div className="bg-narrativa-preto p-12 text-narrativa-branco">
-                <p className="font-heading text-[1.1rem] italic leading-[1.7] text-white/70 mb-5">
+                <p className="text-[1.1rem] italic leading-[1.7] text-white/70 mb-5">
                   &ldquo;A versão oficial é de normalidade. O discurso público
                   insiste em estabilidade. Mas como quase sempre na política, o
                   que se diz em público não revela completamente o que se
                   constrói nos bastidores.&rdquo;
                 </p>
-                <p className="font-heading text-[1.1rem] italic leading-[1.7] text-white/70">
+                <p className="text-[1.1rem] italic leading-[1.7] text-white/70">
                   <strong className="text-narrativa-branco not-italic">
                     Entender o que está acontecendo passa menos pelo que é dito —
                     e mais pelo que, cuidadosamente, não é.
@@ -116,7 +116,7 @@ export default function SobrePage() {
               {/* Decorative blocks */}
               <div className="grid grid-cols-2 gap-2 mt-2 max-sm:hidden">
                 <div className="bg-narrativa-preto aspect-square flex items-center justify-center p-8">
-                  <p className="font-heading text-[1.4rem] italic text-white/70 leading-[1.4]">
+                  <p className="text-[1.4rem] italic text-white/70 leading-[1.4]">
                     O poder como{" "}
                     <strong className="text-narrativa-vermelho not-italic">
                       construção
@@ -124,7 +124,7 @@ export default function SobrePage() {
                   </p>
                 </div>
                 <div className="bg-narrativa-vermelho aspect-square flex items-center justify-center">
-                  <p className="font-heading text-[2.5rem] font-black text-white/15 tracking-[-0.02em]">
+                  <p className="text-[2.5rem] font-black text-white/15 tracking-[-0.02em]">
                     VERSÃO
                   </p>
                 </div>
@@ -145,10 +145,10 @@ export default function SobrePage() {
               {pilares.map((pilar) => (
                 <FadeUp key={pilar.num}>
                   <div className="pt-6 border-t-[3px] border-narrativa-cinza-linha hover:border-narrativa-vermelho transition-colors group">
-                    <p className="font-heading text-[2.5rem] font-black text-narrativa-cinza-linha leading-none mb-3 group-hover:text-narrativa-vermelho transition-colors">
+                    <p className="text-[2.5rem] font-black text-narrativa-cinza-linha leading-none mb-3 group-hover:text-narrativa-vermelho transition-colors">
                       {pilar.num}
                     </p>
-                    <h3 className="font-heading text-[1.15rem] font-bold mb-2">
+                    <h3 className="text-[1.15rem] font-bold mb-2">
                       {pilar.title}
                     </h3>
                     <p className="text-[0.9rem] text-narrativa-cinza-texto leading-[1.65]">
@@ -164,7 +164,7 @@ export default function SobrePage() {
           <div className="mt-16 p-12 bg-narrativa-cinza-claro grid grid-cols-2 gap-12 items-center max-sm:grid-cols-1">
             <div>
               <span className="block w-12 h-[3px] bg-narrativa-vermelho mb-5" />
-              <h2 className="font-heading text-[1.8rem] mb-4">
+              <h2 className="text-[1.8rem] mb-4">
                 Acompanhe a Narrativa
               </h2>
               <p className="text-[0.95rem] text-narrativa-cinza-texto leading-[1.7]">

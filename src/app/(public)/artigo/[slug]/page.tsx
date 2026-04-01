@@ -77,7 +77,7 @@ export default async function ArtigoPage({
               <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-8 flex-wrap">
                 {/* Author */}
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center font-heading text-[0.85rem] font-bold text-narrativa-branco shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-narrativa-vermelho flex items-center justify-center text-[0.85rem] font-bold text-narrativa-branco shrink-0">
                     N
                   </div>
                   <div className="flex flex-col gap-0.5">
@@ -135,7 +135,7 @@ export default async function ArtigoPage({
                 articulado.
               </p>
 
-              <h2 className="font-heading text-[clamp(1.4rem,3vw,1.9rem)] mt-10 mb-4 pt-4 border-t border-narrativa-cinza-linha">
+              <h2 className="text-[clamp(1.4rem,3vw,1.9rem)] mt-10 mb-4 pt-4 border-t border-narrativa-cinza-linha">
                 O ponto de atenção está no descompasso
               </h2>
 
@@ -163,7 +163,7 @@ export default async function ArtigoPage({
                 como explicação.&rdquo;
               </HighlightPhrase>
 
-              <h2 className="font-heading text-[clamp(1.4rem,3vw,1.9rem)] mt-10 mb-4 pt-4 border-t border-narrativa-cinza-linha">
+              <h2 className="text-[clamp(1.4rem,3vw,1.9rem)] mt-10 mb-4 pt-4 border-t border-narrativa-cinza-linha">
                 O contexto local encontra o nacional
               </h2>
 
@@ -179,7 +179,7 @@ export default async function ArtigoPage({
                 antecipa ao que pode vir.
               </p>
 
-              <h3 className="font-heading text-[1.2rem] mt-8 mb-3">
+              <h3 className="text-[1.2rem] mt-8 mb-3">
                 O discurso como construção de realidade
               </h3>
 
@@ -256,7 +256,7 @@ export default async function ArtigoPage({
                     <div className="flex gap-3 py-3 border-b border-narrativa-cinza-linha last:border-b-0">
                       <div className="w-14 h-14 shrink-0 bg-narrativa-cinza-claro" />
                       <div>
-                        <p className="font-heading text-[0.88rem] leading-[1.3] font-bold">
+                        <p className="text-[0.88rem] leading-[1.3] font-bold">
                           {a.title}
                         </p>
                         <p className="text-[0.62rem] text-[#aaa] tracking-[0.08em] uppercase mt-1">

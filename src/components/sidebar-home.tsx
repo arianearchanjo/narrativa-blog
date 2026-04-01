@@ -17,7 +17,7 @@ export function SidebarHome() {
     <aside className="flex flex-col gap-8" aria-label="Coluna lateral">
       {/* Sobre o blog */}
       <div className="bg-narrativa-preto p-8 text-narrativa-branco">
-        <h3 className="font-heading text-[1.1rem] font-bold mb-4 pb-3 border-b border-white/15">
+        <h3 className="text-[1.1rem] font-bold mb-4 pb-3 border-b border-white/15">
           Sobre a Narrativa
         </h3>
         <p className="text-[0.88rem] text-white/60 leading-[1.7] font-light">
@@ -35,7 +35,7 @@ export function SidebarHome() {
 
       {/* Newsletter */}
       <div className="border border-narrativa-cinza-linha p-8">
-        <h3 className="font-heading text-[1.1rem] font-bold mb-4 pb-3 border-b border-narrativa-cinza-linha">
+        <h3 className="text-[1.1rem] font-bold mb-4 pb-3 border-b border-narrativa-cinza-linha">
           Receba as análises
         </h3>
         <p className="text-[0.88rem] text-narrativa-cinza-texto leading-[1.7] font-light mb-5">
@@ -46,7 +46,7 @@ export function SidebarHome() {
 
       {/* Quote */}
       <div className="border-l-[3px] border-narrativa-dourado pl-5 py-2">
-        <p className="font-heading italic text-[0.95rem] text-narrativa-cinza-texto leading-[1.6]">
+        <p className="italic text-[0.95rem] text-narrativa-cinza-texto leading-[1.6]">
           &ldquo;Entender o que está acontecendo passa menos pelo que é dito — e
           mais pelo que, cuidadosamente, não é.&rdquo;
         </p>

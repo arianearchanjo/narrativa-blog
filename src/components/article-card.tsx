@@ -34,7 +34,7 @@ export function ArticleCard({
             {tag}
           </Badge>
           <Link href={`/artigo/${slug}`}>
-            <h3 className="font-heading text-[clamp(1.15rem,2.5vw,1.45rem)] font-bold leading-[1.2] transition-colors group-hover:text-narrativa-vermelho">
+            <h3 className="text-[clamp(1.15rem,2.5vw,1.45rem)] font-bold leading-[1.2] transition-colors group-hover:text-narrativa-vermelho">
               {title}
             </h3>
           </Link>

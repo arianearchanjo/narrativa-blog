@@ -6,7 +6,7 @@ interface QuoteBlockProps {
 export function QuoteBlock({ children, cite }: QuoteBlockProps) {
   return (
     <blockquote className="my-10 p-8 pl-[2.2rem] border-l-4 border-narrativa-vermelho bg-narrativa-cinza-claro relative pullquote-deco">
-      <p className="font-heading text-[clamp(1.1rem,2vw,1.4rem)] italic text-narrativa-preto leading-[1.5]">
+      <p className="text-[clamp(1.1rem,2vw,1.4rem)] italic text-narrativa-preto leading-[1.5]">
         {children}
       </p>
       {cite && (

@@ -2,13 +2,11 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: 'Playfair Display', 'Libre Baskerville', Georgia, serif;
-  --font-sans: 'Lato', system-ui, sans-serif;
+  --font-heading: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 
   --color-narrativa-preto: #0B0B0B;
   --color-narrativa-vermelho: #B11226;
@@ -98,7 +96,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-narrativa-branco text-narrativa-preto font-sans antialiased;
+    @apply bg-narrativa-branco text-narrativa-preto antialiased text-justify;
+    font-family: var(--font-body), 'Segoe UI', system-ui, sans-serif;
     line-height: 1.7;
   }
   html {
@@ -112,8 +111,13 @@
     display: block;
     max-width: 100%;
   }
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading);
+  h1 {
+    font-family: var(--font-playfair), Georgia, serif;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  h2, h3, h4 {
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.01em;
