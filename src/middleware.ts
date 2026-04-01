@@ -49,7 +49,7 @@ export const config = {
   matcher: [
     '/login',
     '/dashboard/:path*',
-    '/dashboard-admin/:path*',
+    '/dashboard-owner/:path*',
     '/dashboard-editor/:path*',
     '/dashboard-author/:path*',
     '/api/auth/:path*',
