@@ -16,7 +16,7 @@ export const createLotacao = withPermission(
 				return { success: false, error: parsed.error.issues[0].message }
 			}
 
-			const existing = await prisma.lotacoes.findFirst({
+			const existing = await prisma.lotacao.findFirst({
 				where: { name: parsed.data.name, organizationId: ctx.organizationId },
 			})
 
@@ -24,7 +24,7 @@ export const createLotacao = withPermission(
 				return { success: false, error: 'Já existe uma lotação com esse nome' }
 			}
 
-			const lotacao = await prisma.lotacoes.create({
+			const lotacao = await prisma.lotacao.create({
 				data: {
 					name: parsed.data.name,
 					organizationId: ctx.organizationId,

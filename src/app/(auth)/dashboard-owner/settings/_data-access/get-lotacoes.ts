@@ -7,7 +7,7 @@ export const getLotacoes = withPermission(
 	'read',
 	async (ctx) => {
 		try {
-			const lotacoes = await prisma.lotacoes.findMany({
+			const lotacoes = await prisma.lotacao.findMany({
 				where: { organizationId: ctx.organizationId },
 				orderBy: { createdAt: 'desc' },
 			})

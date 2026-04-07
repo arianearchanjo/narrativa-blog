@@ -19,7 +19,6 @@ export const getModules = withPermission(
 				success: true,
 				data: modules.map((m) => ({
 					key: m.key,
-					name: m.name,
 					memberCount: m._count.permissions,
 				})),
 			}

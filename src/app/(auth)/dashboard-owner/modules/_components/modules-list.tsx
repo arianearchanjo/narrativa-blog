@@ -21,8 +21,11 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/components/ui/dialog'
+import {
+	Field,
+	FieldContent, FieldLabel
+} from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import {
 	Table,
 	TableBody,
@@ -223,19 +226,21 @@ export function ModulesList() {
 						</DialogTitle>
 					</DialogHeader>
 					<div className="grid gap-2 py-4">
-						<div className="grid gap-2">
-							<Label htmlFor={keyId}>Chave</Label>
-							<Input
-								id={keyId}
-								placeholder="Ex: championships"
-								value={key}
-								onChange={(e) => setKey(e.target.value)}
-							/>
-							<p className="text-xs text-muted-foreground">
-								Identificador único usado internamente. Apenas letras
-								minúsculas, números e hífens.
-							</p>
-						</div>
+						<Field>
+							<FieldLabel htmlFor={keyId}>Chave</FieldLabel>
+							<FieldContent>
+								<Input
+									id={keyId}
+									placeholder="Ex: championships"
+									value={key}
+									onChange={(e) => setKey(e.target.value)}
+								/>
+								<p className="text-xs text-muted-foreground mt-1">
+									Identificador único usado internamente. Apenas letras
+									minúsculas, números e hífens.
+								</p>
+							</FieldContent>
+						</Field>
 					</div>
 					<div className="flex justify-end gap-2">
 						<Button variant="outline" onClick={() => setDialogOpen(false)}>

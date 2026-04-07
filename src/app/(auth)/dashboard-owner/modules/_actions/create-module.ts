@@ -30,7 +30,6 @@ export const createModule = withPermission(
 			const modulo = await prisma.modulo.create({
 				data: {
 					key: validated.data.key,
-					name: validated.data.key,
 					organizationId: ctx.organizationId,
 				},
 			})

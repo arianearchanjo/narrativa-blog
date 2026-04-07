@@ -42,7 +42,6 @@ export const updateModule = withPermission(
 				},
 				data: {
 					key: newKey,
-					name: newKey,
 				},
 			})
 

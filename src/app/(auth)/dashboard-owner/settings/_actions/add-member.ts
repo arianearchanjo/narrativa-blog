@@ -8,7 +8,7 @@ import { prisma } from '@/lib/prisma'
 
 export const addMember = withPermission(
 	'create',
-	async (ctx, userId: string, role = 'USER') => {
+	async (ctx, userId: string, role = 'AUTHOR') => {
 		try {
 			const existing = await prisma.member.findFirst({
 				where: { organizationId: ctx.organizationId, userId },
@@ -32,8 +32,7 @@ export const addMember = withPermission(
 				data: {
 					organizationId: ctx.organizationId,
 					userId,
-					role: ROLES[role as keyof typeof ROLES] ?? ROLES.USER,
-					email: user.email,
+					role: (ROLES[role as keyof typeof ROLES] ?? ROLES.AUTHOR) as ROLES,
 					createdAt: new Date(),
 				},
 			})

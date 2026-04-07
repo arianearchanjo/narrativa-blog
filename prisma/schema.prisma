@@ -209,18 +209,59 @@ model Page {
 }
 
 model Organization {
-  id          String       @id @default(uuid())
-  name        String       @db.Text
-  slug        String
-  logo        String?      @db.Text
-  createdAt   DateTime
-  metadata    String?      @db.Text
-  members     Member[]
-  invitations Invitation[]
-  auditLogs   AuditLog[]
+  id               String       @id @default(uuid())
+  name             String       @db.Text
+  slug             String
+  logo             String?      @db.Text
+  email            String       @default("")
+  telefone         String?
+  cnpj             String?
+  status           String       @default("ACTIVE")
+  createdAt        DateTime     @default(now())
+  metadata         String?      @db.Text
+  members          Member[]
+  invitations      Invitation[]
+  auditLogs        AuditLog[]
+  modulos          Modulo[]
+  memberPermissions MemberPermission[]
+  lotacoes         Lotacao[]
+  apiSyncLogs      ApiSyncLog[]
+
+  // API Integration Config
+  apiUrlContratos  String?      @db.Text
+  apiUrlLicitacoes String?      @db.Text
+  apiUrlFiscais    String?      @db.Text
+  apiUrlAditivos   String?      @db.Text
+  autoLinkFiscais  Boolean      @default(false)
+
+  // SMTP Config
+  smtpHost         String?      @db.Text
+  smtpPort         Int?
+  smtpUser         String?      @db.Text
+  smtpPass         String?      @db.Text
+  smtpFrom         String?      @db.Text
+  notifyEmail      String?      @db.Text
+
+  // Sync Status
+  lastSyncAt       DateTime?
+  lastSyncStatus   String?      @db.Text
+  lastSyncMessage  String?      @db.Text
 
   @@unique([slug])
   @@map("organization")
+}
+
+model ApiSyncLog {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  status         String       @db.Text // SUCCESS, ERROR, WARNING
+  message        String       @db.Text
+  details        String?      @db.LongText
+  createdAt      DateTime     @default(now())
+
+  @@index([organizationId, createdAt])
+  @@map("api_sync_log")
 }
 
 model Member {
@@ -230,13 +271,62 @@ model Member {
   userId         String
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   role           ROLES        @default(AUTHOR)
+  fiscalCpf      String?
+  lotacaoId      String?
+  lotacao        Lotacao?     @relation(fields: [lotacaoId], references: [id], onDelete: SetNull)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+  permissions    MemberPermission[]
 
   @@unique([userId, organizationId])
   @@index([organizationId(length: 191)])
   @@index([userId(length: 191)])
   @@map("member")
+}
+
+model Lotacao {
+  id             String       @id @default(uuid())
+  name           String
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  members        Member[]
+
+  @@unique([organizationId, name])
+  @@map("lotacao")
+}
+
+model Modulo {
+  id             String       @id @default(uuid())
+  key            String
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  permissions    MemberPermission[]
+
+  @@unique([organizationId, key])
+  @@map("modulo")
+}
+
+model MemberPermission {
+  id             String       @id @default(uuid())
+  memberId       String
+  member         Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  moduloId       String
+  modulo         Modulo       @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  canCreate      Boolean      @default(false)
+  canRead        Boolean      @default(true)
+  canUpdate      Boolean      @default(false)
+  canDelete      Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([memberId, moduloId])
+  @@map("member_permission")
 }
 
 model Invitation {

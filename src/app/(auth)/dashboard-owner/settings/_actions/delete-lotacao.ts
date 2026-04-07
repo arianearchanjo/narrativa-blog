@@ -9,7 +9,7 @@ export const deleteLotacao = withPermission(
 	'delete',
 	async (ctx, lotacaoId: string) => {
 		try {
-			await prisma.lotacoes.delete({
+			await prisma.lotacao.delete({
 				where: { id: lotacaoId, organizationId: ctx.organizationId },
 			})
 
