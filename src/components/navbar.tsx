@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/#bastidores", label: "Bastidores" },
   { href: "/colunistas", label: "Colunistas" },
   { href: "/sobre", label: "Sobre" },
+  { href: "/contato", label: "Contato" },
 ];
 
 export function Navbar() {
@@ -38,10 +39,10 @@ export function Navbar() {
       <div className="flex items-center justify-between px-[clamp(1.5rem,5vw,4rem)] py-[1.1rem] max-w-[1200px] mx-auto">
         {/* Logo */}
         <Link href="/" className="flex flex-col gap-[0.1rem] leading-none">
-          <span className="font-heading text-[clamp(1.3rem,3vw,1.75rem)] font-black tracking-[0.08em] text-narrativa-branco uppercase">
+          <span className="font-heading text-[clamp(1.6rem,3vw,2.2rem)] font-black tracking-[0.08em] text-narrativa-branco uppercase">
             NARRATIVA<span className="text-narrativa-vermelho">.</span>
           </span>
-          <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 font-sans font-light">
+          <span className="text-[0.72rem] tracking-[0.2em] uppercase text-white/70 font-sans font-light">
             política, poder e versão
           </span>
         </Link>
@@ -66,7 +67,7 @@ export function Navbar() {
                 href={link.href}
                 className={`
                   text-[0.72rem] tracking-[0.14em] uppercase font-bold transition-colors
-                  ${isActive ? "text-narrativa-vermelho" : "text-white/65 hover:text-white"}
+                  ${isActive ? "text-narrativa-vermelho" : "text-narrativa-vermelho hover:text-white"}
                 `}
               >
                 {link.label}
@@ -117,7 +118,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="px-[clamp(1.5rem,5vw,4rem)] py-4 text-[0.72rem] tracking-[0.14em] uppercase font-bold text-white/65 hover:text-white border-b border-white/[0.06] transition-colors"
+              className="px-[clamp(1.5rem,5vw,4rem)] py-4 text-[0.72rem] tracking-[0.14em] uppercase font-bold text-narrativa-vermelho hover:text-white border-b border-white/[0.06] transition-colors"
             >
               {link.label}
             </Link>

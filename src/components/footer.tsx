@@ -32,6 +32,7 @@ export function Footer() {
               { href: "/#posts", label: "Matérias" },
               { href: "/#bastidores", label: "Bastidores" },
               { href: "/sobre", label: "Sobre" },
+              { href: "/contato", label: "Contato" },
             ].map((l) => (
               <li key={l.href}>
                 <Link
@@ -51,7 +52,7 @@ export function Footer() {
             Temas
           </h4>
           <ul className="flex flex-col gap-2">
-            {["Paraná", "Nacional", "Poder & Discurso", "Eleições"].map(
+            {["Curitiba", "Paraná", "Nacional", "Poder & Discurso"].map(
               (t) => (
                 <li key={t}>
                   <Link
@@ -70,7 +71,7 @@ export function Footer() {
       {/* Bottom */}
       <div className="max-w-[1200px] mx-auto flex justify-between items-center pt-6 flex-wrap gap-4">
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">
-          © 2025 <span className="text-narrativa-vermelho">Narrativa.Blog.BR</span> —
+          © 2026 <span className="text-narrativa-vermelho">narrativa.blog.br</span> —
           Todos os direitos reservados.
         </p>
         <p className="text-[0.7rem] tracking-[0.08em] text-white/20">

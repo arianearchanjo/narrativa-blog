@@ -18,10 +18,10 @@ export function SidebarHome() {
       {/* Sobre o blog */}
       <div className="bg-narrativa-preto p-8 text-narrativa-branco">
         <h3 className="text-[1.1rem] font-bold mb-4 pb-3 border-b border-white/15">
-          Sobre a Narrativa
+          Narrativa
         </h3>
         <p className="text-[0.88rem] text-white/60 leading-[1.7] font-light">
-          Matéria política com profundidade. O que está por trás do discurso
+          Política com profundidade. O que está por trás do discurso
           público — o que é dito, o que é evitado e o que se constrói em
           silêncio.
         </p>

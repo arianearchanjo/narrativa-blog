@@ -157,12 +157,6 @@ export default async function Home({
           {/* Main column */}
           <div>
             <section id="posts" aria-labelledby="titulo-recentes">
-              <SectionTitle
-                id="titulo-recentes"
-                title="Matérias recentes"
-                showViewAll
-              />
-              
               {/* Featured two large articles - only on first page */}
               {currentPage === 1 && (
                 <div className="grid grid-cols-2 gap-10 mb-12 max-sm:grid-cols-1">

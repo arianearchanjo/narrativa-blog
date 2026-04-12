@@ -12,12 +12,6 @@ export function HeroHome() {
       <div className="max-w-[1200px] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-12 lg:gap-20 items-center">
           <div>
-            {/* Eyebrow */}
-            <p className="text-[0.65rem] tracking-[0.25em] uppercase text-narrativa-vermelho font-bold mb-5 flex items-center gap-3">
-              <span className="inline-block w-8 h-0.5 bg-narrativa-vermelho" />
-              Matéria de política
-            </p>
-
             <FadeUp>
               <h1 className="font-heading text-[clamp(2.4rem,6vw,4.5rem)] font-black text-narrativa-branco leading-[1.05] mb-6 tracking-[-0.02em]">
                 Entre o discurso e o
@@ -40,10 +34,10 @@ export function HeroHome() {
               <div className="flex items-center gap-6 flex-wrap">
                 <Button
                   asChild
-                  className="bg-narrativa-vermelho hover:bg-[#8c0d1c] text-narrativa-branco text-[0.72rem] font-bold tracking-[0.14em] uppercase px-6 py-5 rounded-none"
+                  className="bg-narrativa-vermelho hover:bg-[#8c0d1c] text-narrativa-branco text-[0.72rem] font-bold tracking-[0.14em] uppercase px-8 py-6 rounded-none"
                 >
                   <Link href="/artigo/entre-o-discurso-e-o-movimento-silencioso">
-                    Ler matéria
+                    Leia mais
                     <ArrowRight className="w-3.5 h-3.5 ml-2" />
                   </Link>
                 </Button>
@@ -55,12 +49,19 @@ export function HeroHome() {
           </div>
 
           <FadeUp delay={0.3} className="max-lg:order-first">
-            <div className="aspect-[4/5] w-full bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden group/image shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-tr from-narrativa-vermelho/20 to-transparent opacity-40" />
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center grayscale opacity-40 transition-transform duration-700 group-hover/image:scale-105 group-hover/image:grayscale-0 group-hover/image:opacity-60" />
-              <span className="relative z-10 text-white/10 text-9xl font-black select-none transition-transform duration-700 group-hover/image:scale-110">
-                1
-              </span>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { slug: "entre-o-discurso-e-o-movimento-silencioso", title: "Entre o discurso e o movimento silencioso", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=800&auto=format&fit=crop" },
+                { slug: "a-antecipacao-como-estrategia", title: "A antecipação como estratégia política", image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop" },
+                { slug: "o-discurso-como-ferramenta", title: "O discurso como ferramenta de poder", image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=800&auto=format&fit=crop" },
+                { slug: "aliancas-sob-novas-condicoes", title: "Alianças sob novas condições", image: "https://images.unsplash.com/photo-1447069387593-a5de0862481e?q=80&w=800&auto=format&fit=crop" },
+              ].map((item) => (
+                <Link key={item.slug} href={`/artigo/${item.slug}`} className="relative aspect-[4/3] overflow-hidden group/card block">
+                  <div className="absolute inset-0 bg-cover bg-center grayscale transition-all duration-500 group-hover/card:scale-105 group-hover/card:grayscale-0" style={{ backgroundImage: `url(${item.image})` }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                  <p className="absolute bottom-0 left-0 right-0 p-3 text-[0.78rem] font-bold text-white leading-[1.3]">{item.title}</p>
+                </Link>
+              ))}
             </div>
           </FadeUp>
         </div>
