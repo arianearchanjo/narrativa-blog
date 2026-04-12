@@ -202,7 +202,6 @@ export default async function Home({
                   <ArticleCard
                     key={article.slug}
                     {...article}
-                    showTag
                     delay={i * 0.08}
                   />
                 ))}
