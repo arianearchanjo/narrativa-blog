@@ -7,17 +7,17 @@ import { SidebarHome } from '@/components/sidebar-home'
 
 const postsRecentes = [
   {
-    tag: 'Análise',
+    tag: 'Paraná',
     title: 'Entre o discurso e o movimento silencioso',
     subtitle:
-      'A versão oficial é de normalidade. Mas como quase sempre na política, o que se diz em público não revela completamente o que se constrói nos bastidores.',
+      'A version oficial é de normalidade. Mas como quase sempre na política, o que se diz em público não revela completamente o que se constrói nos bastidores.',
     date: '31 mar 2025',
     readTime: '7 min de leitura',
     slug: 'entre-o-discurso-e-o-movimento-silencioso',
     imageIndex: 1,
   },
   {
-    tag: 'Estratégia',
+    tag: 'Brasil',
     title:
       'A antecipação como estratégia: o movimento que não aparece em coletivas',
     subtitle:
@@ -28,7 +28,7 @@ const postsRecentes = [
     imageIndex: 2,
   },
   {
-    tag: 'Poder',
+    tag: 'Curitiba',
     title:
       'O discurso como ferramenta: quando estabilidade é a mensagem, não o estado',
     subtitle:
@@ -50,7 +50,7 @@ const postsRecentes = [
     imageIndex: 4,
   },
   {
-    tag: 'Institucional',
+    tag: 'Curitiba',
     title: 'A gramática do silêncio: o que as notas oficiais não dizem',
     subtitle:
       'Muitas vezes, a notícia mais importante de uma nota oficial está naquilo que ela evita mencionar. O silêncio como ferramenta de gestão de crise.',
@@ -60,7 +60,7 @@ const postsRecentes = [
     imageIndex: 1,
   },
   {
-    tag: 'Bastidores',
+    tag: 'Paraná',
     title: 'O mapa da influência: quem realmente orbita o centro do poder',
     subtitle:
       'Para além dos cargos nomeados, existe um círculo de influência que opera fora do organograma tradicional. Mapeamos os novos interlocutores.',
@@ -70,7 +70,7 @@ const postsRecentes = [
     imageIndex: 2,
   },
   {
-    tag: 'Sucessão',
+    tag: 'Brasil',
     title: 'O horizonte de 2026: os movimentos que antecipam a sucessão',
     subtitle:
       'Embora o calendário aponte para o futuro, as peças do tabuleiro sucessório já começaram a se mover. Quem ganha espaço na reorganização.',
@@ -100,7 +100,7 @@ const postsRecentes = [
     imageIndex: 1,
   },
   {
-    tag: 'Regional',
+    tag: 'Paraná',
     title: 'O tabuleiro paranaense e sua posição no cenário nacional',
     subtitle:
       'Como as articulações locais no Paraná estão sendo observadas por Brasília e quais os reflexos dessa relação nas alianças nacionais.',
@@ -134,19 +134,31 @@ const bastidores = [
   },
 ]
 
+const normalizeString = (str: string) => 
+  str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; category?: string }>;
 }) {
-  const { page: pageParam } = await searchParams;
+  const { page: pageParam, category } = await searchParams;
   const currentPage = Number(pageParam) || 1;
   const postsPerPage = 6;
-  const totalPages = Math.ceil(postsRecentes.length / postsPerPage);
+
+  const filteredPosts = category 
+    ? postsRecentes.filter(post => normalizeString(post.tag) === normalizeString(category))
+    : postsRecentes;
+
+  const displayCategory = category && filteredPosts.length > 0 
+    ? filteredPosts[0].tag 
+    : category;
+
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   const startIdx = (currentPage - 1) * postsPerPage;
   const endIdx = startIdx + postsPerPage;
-  const currentPosts = postsRecentes.slice(startIdx, endIdx);
+  const currentPosts = filteredPosts.slice(startIdx, endIdx);
 
   return (
     <>
@@ -157,8 +169,13 @@ export default async function Home({
           {/* Main column */}
           <div>
             <section id="posts" aria-labelledby="titulo-recentes" className="scroll-mt-32">
-              {/* Featured two large articles - only on first page */}
-              {currentPage === 1 && (
+              <SectionTitle 
+                title={category ? `Matérias: ${displayCategory}` : "Matérias Recentes"} 
+                id="titulo-recentes" 
+              />
+              
+              {/* Featured two large articles - only on first page and when not filtering */}
+              {currentPage === 1 && !category && (
                 <div className="grid grid-cols-2 gap-10 mb-12 max-sm:grid-cols-1">
                   {currentPosts.slice(0, 2).map((article, i) => (
                     <ArticleCard
@@ -173,16 +190,23 @@ export default async function Home({
 
               {/* List of other articles */}
               <ol className="flex flex-col">
-                {(currentPage === 1 ? currentPosts.slice(2) : currentPosts).map(
+                {(currentPage === 1 && !category ? currentPosts.slice(2) : currentPosts).map(
                   (article, i) => (
                     <ArticleCard
                       key={article.slug}
                       {...article}
                       delay={i * 0.08}
+                      showTag
                     />
                   )
                 )}
               </ol>
+              
+              {filteredPosts.length === 0 && (
+                <p className="py-20 text-center text-narrativa-cinza-texto italic">
+                  Nenhuma matéria encontrada nesta categoria.
+                </p>
+              )}
               
               {totalPages > 1 && (
                 <Pagination current={currentPage} total={totalPages} />

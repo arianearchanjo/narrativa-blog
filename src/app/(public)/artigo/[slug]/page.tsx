@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ReadingProgress } from "@/components/reading-progress";
 import { QuoteBlock } from "@/components/quote-block";
 import { HighlightPhrase } from "@/components/highlight-phrase";
@@ -37,10 +38,12 @@ export default async function ArtigoPage({
     <>
       <ReadingProgress />
 
-      {/* Hero */}
-      <header className="bg-narrativa-preto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(3rem,7vw,6rem)] pb-[clamp(2.5rem,5vw,4rem)]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="max-w-[760px]">
+      {/* Hero / Cabeçalho Escuro */}
+      <header className="bg-narrativa-preto px-[clamp(1.5rem,5vw,4rem)] py-[3rem] lg:py-[4rem]">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[3rem] items-center">
+          
+          {/* Coluna Esquerda: Conteúdo */}
+          <div className="flex flex-col">
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-6">
               <Link
@@ -56,7 +59,7 @@ export default async function ArtigoPage({
             </div>
 
             <FadeUp>
-              <h1 className="font-heading text-[clamp(2rem,5vw,3.6rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em]">
+              <h1 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-black text-narrativa-branco leading-[1.08] mb-6 tracking-[-0.02em]">
                 Entre o discurso
                 <br />
                 e o movimento
@@ -66,7 +69,7 @@ export default async function ArtigoPage({
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5">
+              <p className="text-[clamp(1rem,1.5vw,1.15rem)] text-white/50 leading-[1.6] font-light max-w-[600px] border-l-2 border-narrativa-vermelho pl-5">
                 A versão oficial é de normalidade. Mas como quase sempre na
                 política, o que se diz em público não revela completamente o que
                 se constrói nos bastidores.
@@ -95,6 +98,20 @@ export default async function ArtigoPage({
               </div>
             </FadeUp>
           </div>
+
+          {/* Coluna Direita: Imagem de Capa */}
+          <FadeUp delay={0.3} className="w-full">
+            <div className="relative w-full h-[250px] lg:h-[380px] overflow-hidden rounded-[8px]">
+              <Image
+                src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200&auto=format&fit=crop"
+                alt="Imagem de capa da matéria"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </FadeUp>
+
         </div>
       </header>
 

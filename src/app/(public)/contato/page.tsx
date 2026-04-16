@@ -97,30 +97,17 @@ export default async function ContatoPage() {
               {/* Block 1 */}
               <div>
                 <p className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-2">
-                  E-mail
+                  E-mail de Contato
                 </p>
-                <h3 className="font-bold text-[1rem] text-narrativa-preto mb-1">
-                  redacao@narrativa.blog.br
+                <h3 className="font-bold text-[1.2rem] text-narrativa-preto mb-1">
+                  contato@narrativa.blog.br
                 </h3>
-                <p className="text-[0.9rem] text-narrativa-cinza-texto font-light leading-[1.6]">
-                  Para pautas, correções e contato direto com a redação.
+                <p className="text-[0.95rem] text-narrativa-cinza-texto font-light leading-[1.6]">
+                  Para sugestões, pautas, correções, parcerias comerciais ou qualquer outro assunto relacionado à Narrativa.
                 </p>
               </div>
 
               {/* Block 2 */}
-              <div>
-                <p className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-2">
-                  Parcerias
-                </p>
-                <h3 className="font-bold text-[1rem] text-narrativa-preto mb-1">
-                  parcerias@narrativa.blog.br
-                </h3>
-                <p className="text-[0.9rem] text-narrativa-cinza-texto font-light leading-[1.6]">
-                  Propostas comerciais e projetos editoriais.
-                </p>
-              </div>
-
-              {/* Block 3 */}
               <div>
                 <p className="text-[0.65rem] tracking-[0.2em] uppercase text-narrativa-vermelho font-bold mb-2">
                   Sobre o projeto
@@ -129,7 +116,7 @@ export default async function ContatoPage() {
                   Conheça a Narrativa
                 </h3>
                 <p className="text-[0.9rem] text-narrativa-cinza-texto font-light leading-[1.6]">
-                  Um blog de matéria política com foco no que está por trás do discurso público.
+                  Um blog de matéria política com foco no que está por trás do discurso público — o que é dito, o que é evitado e o que se constrói em silêncio.
                 </p>
                 <Link
                   href="/sobre"

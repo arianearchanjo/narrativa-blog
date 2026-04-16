@@ -7,14 +7,13 @@ export function Footer() {
       <div className="max-w-[1200px] mx-auto grid grid-cols-[1.5fr_1fr_1fr] gap-12 pb-10 border-b border-white/10 max-md:grid-cols-2 max-sm:grid-cols-1">
         {/* Logo col */}
         <div>
-          <Link href="/" className="inline-block">
-            <Image
-              src="/imgs/logo.png"
-              alt="Narrativa — política, poder e versão"
-              width={200}
-              height={50}
-              className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
-            />
+          <Link href="/" className="flex flex-col gap-[0.1rem] leading-none mb-6">
+            <span className="font-heading text-[1.75rem] font-black tracking-[0.08em] text-narrativa-branco uppercase">
+              NARRATIVA<span className="text-narrativa-vermelho">.</span>
+            </span>
+            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/40 font-light">
+              política, poder e versão
+            </span>
           </Link>
           <p className="text-[0.85rem] text-white/35 leading-[1.7] mt-4 font-light">
             Matéria política com profundidade.

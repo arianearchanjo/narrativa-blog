@@ -46,7 +46,7 @@ export function ArticleCard({
             className="aspect-video overflow-hidden bg-narrativa-cinza-claro relative group/img"
           >
             <div 
-              className="absolute inset-0 bg-cover bg-center grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
+              className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
               style={{ backgroundImage: `url(${imageUrl})` }}
             />
             <div className="absolute inset-0 bg-narrativa-vermelho/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -110,7 +110,7 @@ export function ArticleCard({
           aria-hidden
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
             style={{ backgroundImage: `url(${imageUrl})` }}
           />
           <div className="absolute inset-0 bg-narrativa-vermelho/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
